@@ -74,14 +74,6 @@
         }
       ]
     },
-    "define_name": {
-      "type": "PATTERN",
-      "value": "\\$\\w+"
-    },
-    "define_value": {
-      "type": "PATTERN",
-      "value": "[0-9a-zA-Z_-]+"
-    },
     "define": {
       "type": "SEQ",
       "members": [
@@ -91,11 +83,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "define_name"
+          "name": "variable"
         },
         {
           "type": "SYMBOL",
-          "name": "define_value"
+          "name": "literal"
         }
       ]
     },
@@ -332,54 +324,55 @@
         }
       ]
     },
+    "literal": {
+      "type": "PATTERN",
+      "value": "([^=\\r\\n\\/\\#]|\\/[^\\/*]|[^\\s]#)+\\s"
+    },
+    "variable": {
+      "type": "PATTERN",
+      "value": "\\$\\w+"
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-z_0-9]+"
+    },
     "opcode": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "opcode_name"
-        },
-        {
-          "type": "STRING",
-          "value": "="
-        },
-        {
-          "type": "SYMBOL",
-          "name": "opcode_value"
-        }
-      ]
-    },
-    "opcode_name": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[A-Za-z_0-9]+"
+          "name": "identifier"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "opcode_fragment"
+              "name": "variable"
             },
             {
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "literal"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "variable"
+            }
+          ]
         }
       ]
-    },
-    "opcode_fragment": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "\\$\\w+"
-      }
-    },
-    "opcode_value": {
-      "type": "PATTERN",
-      "value": "([^=\\r\\n\\/]|\\/[^\\/*])+\\s"
     }
   },
   "extras": [

@@ -34,9 +34,7 @@ module.exports = grammar({
       $.include,
     ),
 
-    define_name: $ => /\$\w+/,
-    define_value: $ => /[0-9a-zA-Z_-]+/,
-    define: $ => seq("#define", $.define_name, $.define_value),
+    define: $ => seq("#define", $.variable, $.literal),
 
     include_path: $ => token(/"[^"]+"/),
     include: $ => seq("#include", $.include_path),
@@ -51,15 +49,17 @@ module.exports = grammar({
     group: $ => scope($, "<group>", -3),
     region: $ => scope($, "<region>", -4),
     special: $ => scope($, /<(control|curve|effect|midi|sample)>/, -5),
-    
-    opcode: $ => seq($.opcode_name, "=", $.opcode_value),
-    opcode_name: $ => seq(/[A-Za-z_0-9]+/, optional($.opcode_fragment)),
-    opcode_fragment: $ => token.immediate(/\$\w+/),
 
-    opcode_value: $ =>  /([^=\r\n\/]|\/[^\/*])+\s/,
+    // awful
+    literal: $ => /([^=\r\n\/\#]|\/[^\/*]|[^\s]#)+\s/,
+    variable: $ => /\$\w+/,
+    identifier: $ => /[a-z_0-9]+/,
 
-    // opcode_value: $ => choice($.opcode_value_number, $.opcode_value_string),
-    // opcode_value_number: $ => choice(/\-?[0-9.]+\s/, /[abcdefg]#?[0-9]\s/),
-    // opcode_value_string: $ => /[^=\r/\n]+\s/,
+    opcode: $ => seq(
+      $.identifier, 
+      optional($.variable), 
+      "=", 
+      choice($.literal, $.variable)
+    ),
   }
 });
