@@ -21,6 +21,10 @@ module.exports = grammar({
     $.comment,
   ],
 
+  externals: $ => [
+    $.literal,
+  ],
+
   rules: {
     document: $ => seq(...order($)),
 
@@ -50,8 +54,6 @@ module.exports = grammar({
     region: $ => scope($, "<region>", -4),
     special: $ => scope($, /<(control|curve|effect|midi|sample)>/, -5),
 
-    // awful
-    literal: $ => /([^=\r\n\/\#]|\/[^\/*]|[^\s]#)+\s/,
     variable: $ => /\$\w+/,
     identifier: $ => /[a-z_0-9]+/,
 
@@ -59,7 +61,7 @@ module.exports = grammar({
       $.identifier, 
       optional($.variable), 
       "=", 
-      choice($.literal, $.variable)
+      choice($.variable, $.literal)
     ),
   }
 });

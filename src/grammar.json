@@ -324,10 +324,6 @@
         }
       ]
     },
-    "literal": {
-      "type": "PATTERN",
-      "value": "([^=\\r\\n\\/\\#]|\\/[^\\/*]|[^\\s]#)+\\s"
-    },
     "variable": {
       "type": "PATTERN",
       "value": "\\$\\w+"
@@ -364,11 +360,11 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "literal"
+              "name": "variable"
             },
             {
               "type": "SYMBOL",
-              "name": "variable"
+              "name": "literal"
             }
           ]
         }
@@ -387,7 +383,12 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "literal"
+    }
+  ],
   "inline": [],
   "supertypes": []
 }
