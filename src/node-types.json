@@ -1,0 +1,323 @@
+[
+  {
+    "type": "define",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "define_name",
+          "named": true
+        },
+        {
+          "type": "define_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "document",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "global",
+          "named": true
+        },
+        {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "master",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        },
+        {
+          "type": "region",
+          "named": true
+        },
+        {
+          "type": "special",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "global",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "master",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        },
+        {
+          "type": "region",
+          "named": true
+        },
+        {
+          "type": "special",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        },
+        {
+          "type": "region",
+          "named": true
+        },
+        {
+          "type": "special",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "include",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "include_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "define",
+          "named": true
+        },
+        {
+          "type": "include",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "master",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        },
+        {
+          "type": "region",
+          "named": true
+        },
+        {
+          "type": "special",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "opcode",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "opcode_name",
+          "named": true
+        },
+        {
+          "type": "opcode_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "opcode_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "opcode_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "region",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        },
+        {
+          "type": "special",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "special",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "#define",
+    "named": false
+  },
+  {
+    "type": "#include",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "define_name",
+    "named": true
+  },
+  {
+    "type": "define_value",
+    "named": true
+  },
+  {
+    "type": "header",
+    "named": true
+  },
+  {
+    "type": "include_path",
+    "named": true
+  },
+  {
+    "type": "opcode_fragment",
+    "named": true
+  },
+  {
+    "type": "opcode_value",
+    "named": true
+  }
+]
