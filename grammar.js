@@ -25,6 +25,8 @@ module.exports = grammar({
     $.literal,
   ],
 
+  word: $ => $.invalid_token,
+
   rules: {
     document: $ => seq(...order($)),
 
@@ -38,7 +40,7 @@ module.exports = grammar({
 
     include_path: $ => seq('"', token.immediate(/[^"\r\n]+/), token.immediate('"')),
     include: $ => seq("#include", $.include_path),
-    
+
     comment: $ => token(choice(
       seq("//", /[^\r\n]*/),
       seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"),
@@ -48,7 +50,7 @@ module.exports = grammar({
     master: $ => scope($, "<master>", -2),
     group: $ => scope($, "<group>", -3),
     region: $ => scope($, "<region>", -4),
-    special: $ => scope($, /<\w+>/, -5),
+    special: $ => scope($, /<(control|effect|midi|sample|curve)>/, -5),
 
     variable: $ => /\$\w+/,
     identifier: $ => /[a-z_0-9]+/,
@@ -59,5 +61,7 @@ module.exports = grammar({
       token.immediate("="),
       $.literal,
     ),
+
+    invalid_token: $ => /[^=\s]+/,
   }
 });

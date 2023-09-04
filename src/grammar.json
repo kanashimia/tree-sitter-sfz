@@ -1,5 +1,6 @@
 {
   "name": "sfz",
+  "word": "invalid_token",
   "rules": {
     "document": {
       "type": "SEQ",
@@ -317,7 +318,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "<\\w+>"
+            "value": "<(control|effect|midi|sample|curve)>"
           },
           "named": true,
           "value": "header"
@@ -370,6 +371,10 @@
           "name": "literal"
         }
       ]
+    },
+    "invalid_token": {
+      "type": "PATTERN",
+      "value": "[^=\\s]+"
     }
   },
   "extras": [

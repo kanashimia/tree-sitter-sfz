@@ -7,12 +7,11 @@
 ((literal) @constant (#match? @constant "^[$][A-Za-z_-]+$"))
 (literal) @string
 
-((header) @keyword
-  (#match? @keyword
-    "^<(region|group|master|global|control|curve|effect|midi|sample)>$"))
-(header) @error
+(header) @keyword
 
 (comment) @comment
 (identifier) @property
 (variable) @constant
 (include_path) @string
+
+(ERROR) @error
