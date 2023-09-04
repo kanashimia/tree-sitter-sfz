@@ -53,24 +53,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "macro"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "opcode"
-        }
-      ]
-    },
-    "macro": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
           "name": "define"
         },
         {
           "type": "SYMBOL",
           "name": "include"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "opcode"
         }
       ]
     },
@@ -92,11 +83,27 @@
       ]
     },
     "include_path": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "\"[^\"]+\""
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\""
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "[^\"\\r\\n]+"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "\""
+          }
+        }
+      ]
     },
     "include": {
       "type": "SEQ",
@@ -310,7 +317,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "<(control|curve|effect|midi|sample)>"
+            "value": "<\\w+>"
           },
           "named": true,
           "value": "header"
@@ -352,21 +359,15 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "="
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "="
+          }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "variable"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "literal"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "literal"
         }
       ]
     }

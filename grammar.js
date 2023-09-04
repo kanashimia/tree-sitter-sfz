@@ -29,18 +29,14 @@ module.exports = grammar({
     document: $ => seq(...order($)),
 
     _statement: $ => choice(
-      $.macro,
-      $.opcode,
-    ),
-
-    macro: $ => choice(
       $.define,
       $.include,
+      $.opcode,
     ),
 
     define: $ => seq("#define", $.variable, $.literal),
 
-    include_path: $ => token(/"[^"]+"/),
+    include_path: $ => seq('"', token.immediate(/[^"\r\n]+/), token.immediate('"')),
     include: $ => seq("#include", $.include_path),
     
     comment: $ => token(choice(
@@ -52,7 +48,7 @@ module.exports = grammar({
     master: $ => scope($, "<master>", -2),
     group: $ => scope($, "<group>", -3),
     region: $ => scope($, "<region>", -4),
-    special: $ => scope($, /<(control|curve|effect|midi|sample)>/, -5),
+    special: $ => scope($, /<\w+>/, -5),
 
     variable: $ => /\$\w+/,
     identifier: $ => /[a-z_0-9]+/,
@@ -60,8 +56,8 @@ module.exports = grammar({
     opcode: $ => seq(
       $.identifier, 
       optional($.variable), 
-      "=", 
-      choice($.variable, $.literal)
+      token.immediate("="),
+      $.literal,
     ),
   }
 });
