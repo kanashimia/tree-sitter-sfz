@@ -7,7 +7,7 @@
 ((literal) @constant (#match? @constant "^[$][A-Za-z_-]+$"))
 (literal) @string
 
-(header) @keyword
+(header) @namespace
 
 (comment) @comment
 (identifier) @property
